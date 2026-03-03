@@ -6,12 +6,28 @@
   <title>Aritra Saha — Software Developer &amp; AI Engineer</title>
   <meta name="description" content="Portfolio of Aritra Saha — Software Developer focused on backend engineering and AI-driven applications. Experience building scalable APIs, real-time systems, and ML-enabled products.">
 
+  <!-- Canonical & Robots -->
+  <link rel="canonical" href="https://aritraio.github.io">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0a0a0f" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f8f8fc" media="(prefers-color-scheme: light)">
+
   <!-- Open Graph -->
   <meta property="og:title" content="Aritra Saha — Software Developer & AI Engineer">
   <meta property="og:description" content="Backend engineering and AI-driven applications. Scalable APIs, real-time systems, and ML-enabled products.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://aritraio.github.io">
   <meta property="og:image" content="https://aritraio.github.io/assets/images/og-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Aritra Saha Portfolio">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Aritra Saha — Software Developer & AI Engineer">
+  <meta name="twitter:description" content="Backend engineering and AI-driven applications. Scalable APIs, real-time systems, and ML-enabled products.">
+  <meta name="twitter:image" content="https://aritraio.github.io/assets/images/og-preview.png">
 
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
@@ -49,7 +65,7 @@
   <!-- ===================== NAVIGATION ===================== -->
   <header class="site-header" id="site-header">
     <nav class="nav container" aria-label="Primary navigation">
-      <a href="#hero" class="nav__logo" aria-label="Home">
+      <a href="#hero" class="nav__logo" aria-label="Aritra Saha — Home">
         <svg class="eye-logo" viewBox="0 0 80 48" width="44" height="26" aria-hidden="true">
           <defs>
             <radialGradient id="iris-grad" cx="50%" cy="45%" r="50%">
@@ -118,7 +134,7 @@
           <p class="hero__greeting reveal">Hi, I'm</p>
           <h1 class="hero__name reveal reveal--delay-1">Aritra Saha</h1>
           <p class="hero__role reveal reveal--delay-2">
-            <span class="hero__role-static">I'm a </span><span class="hero__role-dynamic" id="role-cycling"></span><span class="hero__role-cursor">|</span>
+            <span class="hero__role-static">I'm a </span><span class="hero__role-dynamic" id="role-cycling" aria-live="polite" aria-atomic="true"></span><span class="hero__role-cursor" aria-hidden="true">|</span>
           </p>
           <p class="hero__summary reveal reveal--delay-3">
             Focused on backend engineering and AI-driven applications. I build scalable APIs, real-time processing workflows, and machine learning-enabled systems using Python, Go, and JavaScript.
@@ -464,7 +480,7 @@
         <h2 class="section__title reveal">Get in Touch</h2>
         <p class="section__subtitle reveal">Open to opportunities, collaborations, and interesting conversations</p>
 
-        <div class="contact__grid reveal">
+        <div class="contact__grid">
           <a href="mailto:aritra.saha@outlook.in" class="contact-card reveal">
             <div class="contact-card__icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -503,7 +519,7 @@
   </main>
 
   <!-- Back to Top -->
-  <button class="back-to-top" id="back-to-top" aria-label="Back to top" title="Back to top">
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top" title="Back to top" aria-hidden="true">
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
   </button>
 
@@ -528,6 +544,15 @@
       </div>
     </div>
   </footer>
+
+  <!-- Noscript fallback -->
+  <noscript>
+    <style>
+      .reveal, .reveal-item { opacity: 1 !important; transform: none !important; }
+      .hero__role-cursor { display: none; }
+      .hero__role-dynamic::after { content: 'Software Developer'; }
+    </style>
+  </noscript>
 
   <!-- Scripts -->
   <script src="js/script.js" defer></script>
