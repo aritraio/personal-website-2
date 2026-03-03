@@ -675,6 +675,7 @@ button {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: nameGradientShift 7s var(--ease-in-out) infinite;
+  will-change: background-position;
 }
 
 .hero__role {
@@ -1144,11 +1145,16 @@ button {
   background-color: var(--color-accent-subtle);
   border-radius: var(--radius-full);
   border: 1px solid transparent;
-  transition: border-color var(--duration-fast) var(--ease-out);
+  transition: border-color var(--duration-fast) var(--ease-out),
+              transform var(--duration-fast) var(--ease-out),
+              background-color var(--duration-fast) var(--ease-out);
 }
 
 .skill-tag:hover {
   border-color: var(--color-accent);
+  background-color: var(--color-accent);
+  color: #fff;
+  transform: translateY(-2px);
 }
 
 /* ============================================================
@@ -1296,6 +1302,14 @@ button {
   color: var(--color-accent);
 }
 
+.project-link svg {
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.project-link:hover svg {
+  transform: translateX(2px);
+}
+
 /* ============================================================
    EXPERIENCE / TIMELINE
    ============================================================ */
@@ -1417,7 +1431,7 @@ button {
    ============================================================ */
 .contact__grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: var(--space-lg);
 }
 
@@ -1551,8 +1565,8 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
+  width: 44px;
+  height: 44px;
   border-radius: var(--radius-full);
   color: var(--color-text-tertiary);
   transition: all var(--duration-fast) var(--ease-out);
@@ -1560,6 +1574,7 @@ button {
 
 .footer__social:hover {
   color: var(--color-accent);
+  background-color: var(--color-accent-subtle);
   transform: translateY(-2px);
 }
 
@@ -1649,10 +1664,6 @@ button {
 
   .skill-card--wide {
     grid-column: 1 / -1;
-  }
-
-  .contact__grid {
-    grid-template-columns: repeat(2, 1fr);
   }
 
   .about__grid {
@@ -1802,4 +1813,84 @@ button {
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50%      { opacity: 0; }
+}
+
+/* ============================================================
+   PRINT STYLES
+   ============================================================ */
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+
+  .site-header,
+  .nav-overlay,
+  .hero__scroll-indicator,
+  .hero__visual,
+  .back-to-top,
+  .theme-toggle,
+  .nav__toggle,
+  .hero__role-cursor,
+  .footer__socials {
+    display: none !important;
+  }
+
+  .hero {
+    min-height: auto;
+    padding-top: 0;
+  }
+
+  .section {
+    padding-block: 1.5rem;
+    page-break-inside: avoid;
+  }
+
+  .reveal,
+  .reveal-item {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .project-card,
+  .skill-card,
+  .timeline__content,
+  .contact-card {
+    border: 1px solid #ccc !important;
+    page-break-inside: avoid;
+  }
+
+  a[href]::after {
+    content: ' (' attr(href) ')';
+    font-size: 0.85em;
+    color: #555 !important;
+  }
+
+  .nav__list a[href]::after,
+  .nav__logo a[href]::after,
+  .btn a[href]::after {
+    content: none;
+  }
+
+  .hero__name {
+    -webkit-text-fill-color: #000;
+    background: none;
+  }
+
+  .container {
+    max-width: 100%;
+    padding: 0;
+  }
 }

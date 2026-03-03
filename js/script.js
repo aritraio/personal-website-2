@@ -132,8 +132,14 @@
       window.requestAnimationFrame(updateActiveLink)
     }
 
+    let resizeTimer
+    function onResize() {
+      clearTimeout(resizeTimer)
+      resizeTimer = setTimeout(updateActiveLink, 150)
+    }
+
     window.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('resize', updateActiveLink)
+    window.addEventListener('resize', onResize)
 
     // Set correctly on initial load
     updateActiveLink()
@@ -186,6 +192,22 @@
         navToggle.focus()
       }
     })
+
+    // Trap focus within nav when open (a11y)
+    navList.addEventListener('keydown', (e) => {
+      if (e.key !== 'Tab' || !navList.classList.contains('open')) return
+      const focusable = $$('a, button', navList)
+      if (!focusable.length) return
+      const first = focusable[0]
+      const last = focusable[focusable.length - 1]
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault()
+        last.focus()
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault()
+        first.focus()
+      }
+    })
   }
 
   /* ============================================================
@@ -197,9 +219,17 @@
     const STORAGE_KEY = 'portfolio-theme'
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
 
+    // Safe localStorage wrapper
+    function safeGetItem(key) {
+      try { return localStorage.getItem(key) } catch { return null }
+    }
+    function safeSetItem(key, value) {
+      try { localStorage.setItem(key, value) } catch { /* quota/privacy */ }
+    }
+
     // Check saved preference or system preference
     function getPreferredTheme() {
-      const saved = localStorage.getItem(STORAGE_KEY)
+      const saved = safeGetItem(STORAGE_KEY)
       if (saved) return saved
       return window.matchMedia('(prefers-color-scheme: light)').matches
         ? 'light'
@@ -208,7 +238,7 @@
 
     function setTheme(theme) {
       html.setAttribute('data-theme', theme)
-      localStorage.setItem(STORAGE_KEY, theme)
+      safeSetItem(STORAGE_KEY, theme)
       themeToggle.setAttribute(
         'aria-label',
         `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`
@@ -279,7 +309,7 @@
     window
       .matchMedia('(prefers-color-scheme: dark)')
       .addEventListener('change', (e) => {
-        if (!localStorage.getItem(STORAGE_KEY)) {
+        if (!safeGetItem(STORAGE_KEY)) {
           setTheme(e.matches ? 'dark' : 'light')
         }
       })
@@ -424,15 +454,7 @@
   }
 
   /* ============================================================
-     9. Performance: Lazy-load non-critical animations
-     ============================================================ */
-  function initParticleBackground() {
-    // Subtle floating particles in the hero — CSS-only via pseudo-elements
-    // This function is a placeholder hook if canvas particles are desired later
-  }
-
-  /* ============================================================
-     10. Back to Top Button
+     9. Back to Top — Visibility API integration
      ============================================================ */
   function initBackToTop() {
     const btn = $('#back-to-top')
@@ -440,7 +462,10 @@
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        btn.classList.toggle('visible', !entry.isIntersecting)
+        const isVisible = !entry.isIntersecting
+        btn.classList.toggle('visible', isVisible)
+        btn.setAttribute('aria-hidden', isVisible ? 'false' : 'true')
+        btn.tabIndex = isVisible ? 0 : -1
       },
       { threshold: 0, rootMargin: '0px' }
     )
@@ -494,11 +519,12 @@
   }
 
   /* ============================================================
-     12. Eye Logo — Mouse Tracking
+     12. Eye Logo — Mouse Tracking (with visibility optimization)
      ============================================================ */
   function initEyeTracking() {
     const eyes = $$('.eye-logo')
     if (!eyes.length) return
+    if (window.matchMedia('(pointer: coarse)').matches) return // skip on touch devices
 
     // Limit how far the pupil/iris can move (in SVG units)
     const MAX_IRIS = 5
@@ -508,11 +534,17 @@
     let mouseX = window.innerWidth / 2
     let mouseY = window.innerHeight / 2
     let rafId = null
+    let isPageVisible = true
+
+    // Pause tracking when tab is not visible
+    document.addEventListener('visibilitychange', () => {
+      isPageVisible = !document.hidden
+    })
 
     document.addEventListener('mousemove', (e) => {
       mouseX = e.clientX
       mouseY = e.clientY
-      if (!rafId) {
+      if (!rafId && isPageVisible) {
         rafId = requestAnimationFrame(updateEyes)
       }
     })
