@@ -315,6 +315,68 @@
   /* ============================================================
      8. Card Tilt Micro-interaction (desktop only)
      ============================================================ */
+
+  /* ============================================================
+     8b. Role Cycling Animation
+     ============================================================ */
+  function initRoleCycling() {
+    const el = $('#role-cycling')
+    if (!el) return
+
+    const roles = [
+      'Software Developer',
+      'AI Engineer',
+      'Backend Engineer',
+      'ML Enthusiast',
+      'API Architect',
+      'Problem Solver',
+      'Good Communicator',
+      'Open Source Contributor',
+    ]
+
+    let roleIndex = 0
+    let charIndex = 0
+    let isDeleting = false
+    const typeSpeed = 70
+    const deleteSpeed = 40
+    const pauseAfterType = 2000
+    const pauseAfterDelete = 400
+
+    function tick() {
+      const current = roles[roleIndex]
+
+      if (!isDeleting) {
+        // Typing
+        el.textContent = current.substring(0, charIndex + 1)
+        charIndex++
+
+        if (charIndex === current.length) {
+          // Finished typing — pause then start deleting
+          isDeleting = true
+          setTimeout(tick, pauseAfterType)
+          return
+        }
+        setTimeout(tick, typeSpeed)
+      } else {
+        // Deleting
+        el.textContent = current.substring(0, charIndex - 1)
+        charIndex--
+
+        if (charIndex === 0) {
+          // Finished deleting — move to next role
+          isDeleting = false
+          roleIndex = (roleIndex + 1) % roles.length
+          setTimeout(tick, pauseAfterDelete)
+          return
+        }
+        setTimeout(tick, deleteSpeed)
+      }
+    }
+
+    // Start after a brief delay
+    setTimeout(tick, 1000)
+  }
+
   function initCardTilt() {
     if (window.matchMedia('(pointer: coarse)').matches) return // skip on touch
 
@@ -357,6 +419,7 @@
     initActiveNav()
     initSmoothScroll()
     initTypingEffect()
+    initRoleCycling()
     initCardTilt()
   }
 
