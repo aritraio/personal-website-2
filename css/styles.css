@@ -583,6 +583,29 @@ button {
   color: var(--color-text-secondary);
   font-weight: var(--fw-medium);
   margin-bottom: var(--space-lg);
+  min-height: 1.6em;
+}
+
+.hero__role-static {
+  color: var(--color-text-secondary);
+}
+
+.hero__role-dynamic {
+  color: var(--color-accent);
+  font-weight: var(--fw-semibold);
+}
+
+.hero__role-cursor {
+  display: inline-block;
+  color: var(--color-accent);
+  font-weight: var(--fw-regular);
+  animation: cursorBlink 0.7s step-end infinite;
+  margin-left: 1px;
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 .hero__separator {
