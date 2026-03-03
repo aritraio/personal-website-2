@@ -172,6 +172,7 @@
     if (!themeToggle) return
 
     const STORAGE_KEY = 'portfolio-theme'
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
 
     // Check saved preference or system preference
     function getPreferredTheme() {
@@ -191,12 +192,64 @@
       )
     }
 
+    function getNextTheme() {
+      return html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'
+    }
+
+    function cleanupThemeTransitionVars() {
+      html.style.removeProperty('--theme-transition-x')
+      html.style.removeProperty('--theme-transition-y')
+      html.style.removeProperty('--theme-transition-radius')
+    }
+
+    function pulseThemeToggle() {
+      themeToggle.classList.add('is-switching')
+      window.setTimeout(() => {
+        themeToggle.classList.remove('is-switching')
+      }, 420)
+    }
+
+    async function toggleThemeWithTransition(source) {
+      const nextTheme = getNextTheme()
+      const supportsViewTransition =
+        typeof document.startViewTransition === 'function' && !reducedMotion.matches
+
+      if (!supportsViewTransition) {
+        setTheme(nextTheme)
+        pulseThemeToggle()
+        return
+      }
+
+      const rect = source?.getBoundingClientRect()
+      const originX = rect ? rect.left + rect.width / 2 : window.innerWidth / 2
+      const originY = rect ? rect.top + rect.height / 2 : 0
+
+      const maxX = Math.max(originX, window.innerWidth - originX)
+      const maxY = Math.max(originY, window.innerHeight - originY)
+      const endRadius = Math.hypot(maxX, maxY)
+
+      html.style.setProperty('--theme-transition-x', `${originX}px`)
+      html.style.setProperty('--theme-transition-y', `${originY}px`)
+      html.style.setProperty('--theme-transition-radius', `${endRadius}px`)
+
+      const transition = document.startViewTransition(() => {
+        setTheme(nextTheme)
+      })
+
+      pulseThemeToggle()
+
+      try {
+        await transition.finished
+      } finally {
+        cleanupThemeTransitionVars()
+      }
+    }
+
     // Apply saved/system theme on load
     setTheme(getPreferredTheme())
 
     themeToggle.addEventListener('click', () => {
-      const current = html.getAttribute('data-theme')
-      setTheme(current === 'dark' ? 'light' : 'dark')
+      toggleThemeWithTransition(themeToggle)
     })
 
     // Listen for system preference changes
