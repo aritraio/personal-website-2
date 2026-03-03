@@ -409,6 +409,68 @@
   }
 
   /* ============================================================
+     10. Back to Top Button
+     ============================================================ */
+  function initBackToTop() {
+    const btn = $('#back-to-top')
+    if (!btn) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        btn.classList.toggle('visible', !entry.isIntersecting)
+      },
+      { threshold: 0, rootMargin: '0px' }
+    )
+
+    // Show after scrolling past the hero
+    const hero = $('#hero')
+    if (hero) observer.observe(hero)
+
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    })
+  }
+
+  /* ============================================================
+     11. Animated Stat Counters
+     ============================================================ */
+  function initStatCounters() {
+    const counters = $$('.stat-card__number[data-target]')
+    if (!counters.length) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target)
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.5 }
+    )
+
+    counters.forEach((el) => observer.observe(el))
+
+    function animateCounter(el) {
+      const target = parseInt(el.getAttribute('data-target'), 10)
+      const duration = 1500
+      const start = performance.now()
+
+      function step(now) {
+        const elapsed = now - start
+        const progress = Math.min(elapsed / duration, 1)
+        // Ease-out cubic
+        const eased = 1 - Math.pow(1 - progress, 3)
+        el.textContent = Math.round(eased * target)
+        if (progress < 1) requestAnimationFrame(step)
+      }
+
+      requestAnimationFrame(step)
+    }
+  }
+
+  /* ============================================================
      INIT — Bootstrap all modules
      ============================================================ */
   function init() {
@@ -421,6 +483,8 @@
     initTypingEffect()
     initRoleCycling()
     initCardTilt()
+    initBackToTop()
+    initStatCounters()
   }
 
   // Run when DOM is ready
