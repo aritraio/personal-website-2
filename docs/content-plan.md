@@ -1,98 +1,114 @@
-# Aritra Saha
+# Portfolio Content Plan
 
-Software Developer | AI Engineer
+## Purpose
+Define final copy, structure, and content quality rules for the single-page portfolio in this project.
 
----
+## Target Audience
+- Recruiters and hiring managers reviewing backend/AI profile fit
+- Engineers evaluating technical depth and project quality
+- Potential collaborators looking for contact and credibility signals
 
-## Professional Summary
+## Messaging Pillars
+- Backend engineering for scalable systems
+- AI-driven application development
+- Real-time workflows and reliability focus
+- Clean architecture and maintainable implementation
 
-Software Developer focused on backend engineering and AI-driven applications. Experience building scalable APIs, real-time processing workflows, and machine learning-enabled systems using Python, Go, and JavaScript. Strong foundation in system design, data structures and algorithms, and maintainable software architecture.
+## Page Structure (Current)
+1. Hero
+2. About
+3. Skills
+4. Experience
+5. Projects
+6. Contact
 
----
+## Section-by-Section Content
 
-## Technical Skills
+### 1) Hero
+**Goal:** establish identity and primary value proposition quickly.
 
-### Programming Languages
+**Required content:**
+- Name
+- Role (dynamic role text can rotate multiple specializations)
+- 1–2 sentence summary of backend + AI focus
+- Primary CTA: Resume download
+- Secondary CTAs: GitHub and LinkedIn
 
-* Python
-* Go
-* JavaScript
-* C
-* C++
+**Copy rules:**
+- Keep summary under 35 words
+- Avoid generic claims like “passionate developer” without context
+- Use outcomes/impact wording where possible
 
-### Backend and Databases
+### 2) About
+**Goal:** provide deeper narrative and technical orientation.
 
-* FastAPI
-* REST API Development
-* MySQL
+**Required content:**
+- 2–3 short paragraphs
+- Focus on problem-solving style, architecture thinking, and reliability mindset
+- Optional personal learning/collaboration note
 
-### Machine Learning and Data
+**Copy rules:**
+- Prefer specific capabilities over broad adjectives
+- Keep paragraphs concise for mobile readability
 
-* NumPy
-* Pandas
-* Scikit-learn
-* Matplotlib
-* Seaborn
+### 3) Skills
+**Goal:** show toolset breadth with clear grouping.
 
-### Tools and Platforms
+**Required categories:**
+- Languages
+- Backend & Databases
+- ML & Data
+- Tools & Platforms
+- Core Competencies
 
-* Git
-* GitHub
-* Linux
+**Copy rules:**
+- Keep skill lists factual and current
+- Avoid duplicate skills across categories unless intentional
 
----
+### 4) Experience
+**Goal:** show chronology, ownership, and outcomes.
 
-## Selected Projects
+**Required content per role/internship:**
+- Role title, organization, timeline
+- 2–4 bullets with implemented work and impact
+- Stack keywords where relevant
 
-### Driver Wellness Monitoring System
+**Copy rules:**
+- Start bullets with strong action verbs
+- Include measurable details when available (latency, throughput, accuracy, etc.)
 
-Designed and developed a real-time monitoring system to assess driver alertness and health risk indicators.
+### 5) Projects
+**Goal:** highlight technically meaningful work.
 
-* Built backend data pipelines for physiological and behavioral signal processing
-* Applied machine learning models for fatigue and risk detection workflows
-* Implemented proactive alerting logic for safety intervention
-* Designed the system for low-latency, reliable real-time response
-* Tech Stack: Python, FastAPI, Scikit-learn, MySQL
+**Required content per project card:**
+- Project name
+- Short problem statement
+- Stack list
+- Key implementation details (architecture, API design, ML workflow, etc.)
+- Outcome/impact statement
+- Links: GitHub and/or live demo
 
----
+**Copy rules:**
+- Prioritize depth over number of projects
+- Replace vague words (“optimized”, “scalable”) with context or metrics
 
-### Multi-Agent AI Travel Assistant
+### 6) Contact
+**Goal:** make outreach frictionless.
 
-Built a modular multi-agent AI system capable of coordinating travel planning, optimization, and decision-making.
+**Required content:**
+- Email
+- GitHub profile
+- LinkedIn profile
+- Optional availability statement
 
-* Designed agent-based architecture with clear task orchestration and delegation
-* Developed backend services for itinerary generation and constraint handling
-* Integrated decision logic for optimized travel recommendations
-* Structured maintainable APIs and modular service components
-* Tech Stack: Python, FastAPI, Git, Linux
+## Content Quality Checklist
+- No placeholder text remains
+- No repeated claims across sections without added detail
+- Project cards include technical and impact signals
+- CTA links are valid and up to date
+- Tone is professional, concise, and evidence-oriented
 
----
-
-### Real-Time Localized SOS Alert System
-
-Developed a real-time emergency alert system designed to broadcast location-based SOS signals to nearby responders and trusted contacts.
-
-* Implemented geolocation-based alert routing for nearby response targeting
-* Built backend APIs for real-time communication and notification delivery
-* Optimized service flow for low-latency alert handling
-* Designed database schemas for event logging and incident tracking
-* Tech Stack: FastAPI, MySQL, JavaScript, Linux
-
----
-
-## Core Competencies
-
-* Backend Development
-* API Architecture and Integration
-* Machine Learning Applications
-* Real-Time Systems
-* Data Structures and Algorithms
-* System Design
-
----
-
-## Contact
-
-* **GitHub:** [https://github.com/aritraio](https://github.com/aritraio)
-* **LinkedIn:** [https://www.linkedin.com/in/aritra404/](https://www.linkedin.com/in/aritra404/)
-* **Email:** [aritra.saha@outlook.in](mailto:aritra.saha@outlook.in)
+## Update Cadence
+- Quick content refresh: monthly
+- Full portfolio pass: every quarter
+- Immediate update after major project, internship, or role change
