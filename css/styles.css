@@ -939,15 +939,18 @@ button {
    REVEAL ANIMATIONS
    ============================================================ */
 .reveal {
+  --reveal-offset-x: 0px;
+  --reveal-offset-y: 30px;
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity var(--duration-slow) var(--ease-out),
-              transform var(--duration-slow) var(--ease-out);
+  transform: translate3d(var(--reveal-offset-x), var(--reveal-offset-y), 0);
+  transition: opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+              transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
 }
 
 .reveal.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0);
 }
 
 .reveal--delay-1 { transition-delay: 100ms; }
@@ -965,6 +968,21 @@ button {
 .project-card.reveal:nth-child(1) { transition-delay: 0ms; }
 .project-card.reveal:nth-child(2) { transition-delay: 150ms; }
 .project-card.reveal:nth-child(3) { transition-delay: 300ms; }
+
+/* Side-entry reveal for section boxes */
+.skills .skill-card.reveal:nth-child(odd),
+.projects .project-card.reveal:nth-child(odd),
+.contact .contact-card.reveal:nth-child(odd) {
+  --reveal-offset-x: -70px;
+  --reveal-offset-y: 0px;
+}
+
+.skills .skill-card.reveal:nth-child(even),
+.projects .project-card.reveal:nth-child(even),
+.contact .contact-card.reveal:nth-child(even) {
+  --reveal-offset-x: 70px;
+  --reveal-offset-y: 0px;
+}
 
 /* ============================================================
    RESPONSIVE — Tablet (min-width: 640px)
