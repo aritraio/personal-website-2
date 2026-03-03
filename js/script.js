@@ -93,27 +93,50 @@
     const navLinks = $$('.nav__link')
     if (!sections.length || !navLinks.length) return
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const id = entry.target.getAttribute('id')
-            navLinks.forEach((link) => {
-              link.classList.toggle(
-                'nav__link--active',
-                link.getAttribute('href') === `#${id}`
-              )
-            })
-          }
-        })
-      },
-      {
-        threshold: 0.3,
-        rootMargin: '-80px 0px -40% 0px',
-      }
-    )
+    let ticking = false
 
-    sections.forEach((section) => observer.observe(section))
+    function setActiveLinkBySectionId(activeId) {
+      navLinks.forEach((link) => {
+        link.classList.toggle(
+          'nav__link--active',
+          link.getAttribute('href') === `#${activeId}`
+        )
+      })
+    }
+
+    function getCurrentSectionId() {
+      const headerHeight = parseInt(
+        getComputedStyle(html).getPropertyValue('--header-height') || '64',
+        10
+      )
+      const checkpoint = window.scrollY + headerHeight + 120
+
+      let currentSectionId = sections[0].id
+      sections.forEach((section) => {
+        if (checkpoint >= section.offsetTop) {
+          currentSectionId = section.id
+        }
+      })
+
+      return currentSectionId
+    }
+
+    function updateActiveLink() {
+      setActiveLinkBySectionId(getCurrentSectionId())
+      ticking = false
+    }
+
+    function onScroll() {
+      if (ticking) return
+      ticking = true
+      window.requestAnimationFrame(updateActiveLink)
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', updateActiveLink)
+
+    // Set correctly on initial load
+    updateActiveLink()
   }
 
   /* ============================================================
@@ -471,6 +494,79 @@
   }
 
   /* ============================================================
+     12. Eye Logo — Mouse Tracking
+     ============================================================ */
+  function initEyeTracking() {
+    const eyes = $$('.eye-logo')
+    if (!eyes.length) return
+
+    // Limit how far the pupil/iris can move (in SVG units)
+    const MAX_IRIS = 5
+    const MAX_PUPIL = 6
+    const MAX_SHINE = 4
+
+    let mouseX = window.innerWidth / 2
+    let mouseY = window.innerHeight / 2
+    let rafId = null
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX
+      mouseY = e.clientY
+      if (!rafId) {
+        rafId = requestAnimationFrame(updateEyes)
+      }
+    })
+
+    function updateEyes() {
+      rafId = null
+      eyes.forEach((svg) => {
+        const rect = svg.getBoundingClientRect()
+        const eyeCX = rect.left + rect.width / 2
+        const eyeCY = rect.top + rect.height / 2
+
+        const dx = mouseX - eyeCX
+        const dy = mouseY - eyeCY
+        const dist = Math.hypot(dx, dy) || 1
+
+        // Normalise direction, then scale by distance (logarithmic damping)
+        const factor = Math.min(1, Math.log2(dist / 40 + 1))
+        const nx = (dx / dist) * factor
+        const ny = (dy / dist) * factor
+
+        // Move iris + iris ring
+        const iris = svg.querySelector('.eye-logo__iris')
+        const irisRing = svg.querySelector('.eye-logo__iris-ring')
+        if (iris) {
+          iris.setAttribute('cx', 40 + nx * MAX_IRIS)
+          iris.setAttribute('cy', 24 + ny * MAX_IRIS)
+        }
+        if (irisRing) {
+          irisRing.setAttribute('cx', 40 + nx * MAX_IRIS)
+          irisRing.setAttribute('cy', 24 + ny * MAX_IRIS)
+        }
+
+        // Move pupil (slightly more)
+        const pupil = svg.querySelector('.eye-logo__pupil')
+        if (pupil) {
+          pupil.setAttribute('cx', 40 + nx * MAX_PUPIL)
+          pupil.setAttribute('cy', 24 + ny * MAX_PUPIL)
+        }
+
+        // Move shine highlights
+        const shines = svg.querySelectorAll('.eye-logo__shine')
+        if (shines.length) {
+          shines[0].setAttribute('cx', 35 + nx * MAX_SHINE * 0.5)
+          shines[0].setAttribute('cy', 20 + ny * MAX_SHINE * 0.5)
+          if (shines[1]) {
+            shines[1].setAttribute('cx', 45 + nx * MAX_SHINE * 0.3)
+            shines[1].setAttribute('cy', 28 + ny * MAX_SHINE * 0.3)
+          }
+        }
+      })
+    }
+  }
+
+  /* ============================================================
      INIT — Bootstrap all modules
      ============================================================ */
   function init() {
@@ -485,6 +581,7 @@
     initCardTilt()
     initBackToTop()
     initStatCounters()
+    initEyeTracking()
   }
 
   // Run when DOM is ready
