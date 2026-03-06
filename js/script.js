@@ -599,6 +599,56 @@
   }
 
   /* ============================================================
+     Eye Logo — 5-Click Easter Egg → Terminal
+     ============================================================ */
+  function initEyeEasterEgg() {
+    const logo = $('.nav__logo')
+    if (!logo) return
+
+    // Inject animation styles dynamically (no change to styles.css)
+    const s = document.createElement('style')
+    s.textContent = [
+      '.nav__logo .eye-logo{transition:filter .18s ease,transform .18s ease}',
+      '@keyframes _eye_ping{0%{filter:brightness(1);transform:scale(1)}40%{filter:brightness(2.8) drop-shadow(0 0 10px #00ff41);transform:scale(1.18)}100%{filter:brightness(1);transform:scale(1)}}',
+      '@keyframes _eye_go{0%{filter:brightness(1) hue-rotate(0deg);transform:scale(1) rotate(0deg)}28%{filter:brightness(4) hue-rotate(100deg) saturate(6);transform:scale(1.45) rotate(14deg)}58%{filter:brightness(7) hue-rotate(220deg);transform:scale(1.75) rotate(-10deg)}82%{filter:brightness(9);transform:scale(2)}100%{filter:brightness(0);transform:scale(0);opacity:0}}',
+      '.eye-logo.egg-ping{animation:_eye_ping .34s ease forwards}',
+      '.eye-logo.egg-go{animation:_eye_go .62s ease forwards}',
+    ].join('\n')
+    document.head.appendChild(s)
+
+    const eye = logo.querySelector('.eye-logo')
+    let count = 0
+    let resetTimer = null
+
+    logo.addEventListener('click', function (e) {
+      count++
+      clearTimeout(resetTimer)
+
+      // Visual ping feedback on every click
+      if (eye) {
+        eye.classList.remove('egg-ping', 'egg-go')
+        void eye.offsetWidth
+        eye.classList.add('egg-ping')
+        setTimeout(() => eye.classList.remove('egg-ping'), 360)
+      }
+
+      if (count >= 5) {
+        // Easter egg triggered — launch terminal
+        count = 0
+        if (eye) {
+          eye.classList.remove('egg-ping')
+          void eye.offsetWidth
+          eye.classList.add('egg-go')
+        }
+        setTimeout(() => { window.location.href = 'terminal.html' }, 650)
+        return
+      }
+
+      resetTimer = setTimeout(() => { count = 0 }, 2500)
+    })
+  }
+
+  /* ============================================================
      INIT — Bootstrap all modules
      ============================================================ */
   function init() {
@@ -614,6 +664,7 @@
     initBackToTop()
     initStatCounters()
     initEyeTracking()
+    initEyeEasterEgg()
   }
 
   // Run when DOM is ready

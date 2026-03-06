@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aritra Saha — Terminal</title>
+  <meta name="description" content="Terminal-style portfolio of Aritra Saha — Software Developer & AI Engineer.">
+  <link rel="canonical" href="https://aritraio.github.io/terminal">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Aritra Saha — Terminal Portfolio">
+  <meta property="og:description" content="Interactive terminal portfolio of Aritra Saha.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aritraio.github.io/terminal">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/terminal.css">
+</head>
+<body>
+
+  <!-- Matrix rain canvas -->
+  <canvas id="matrix-bg" aria-hidden="true"></canvas>
+
+  <!-- Boot sequence overlay -->
+  <div class="boot-screen" id="boot-screen" aria-hidden="true">
+    <div class="boot-glitch-overlay" id="boot-glitch-overlay"></div>
+    <div class="boot-screen__inner">
+      <pre class="boot-ascii" id="boot-ascii" aria-hidden="true"></pre>
+      <div class="boot-sysinfo">
+        <span class="boot-sysname">ARITRA-OS</span>
+        <span class="boot-version">v2.0.26 — 2026.03.06</span>
+      </div>
+      <div class="boot-log" id="boot-log" aria-hidden="true"></div>
+      <div class="boot-bar-row">
+        <span class="boot-bar-label">SYS</span>
+        <div class="boot-bar-track">
+          <div class="boot-segments" id="boot-segments"></div>
+        </div>
+        <span class="boot-bar-pct" id="boot-bar-pct">0%</span>
+      </div>
+      <div class="boot-status" id="boot-msg">Initializing...</div>
+      <div class="boot-hex" id="boot-hex" aria-hidden="true">0x00000000</div>
+    </div>
+    <div class="boot-scanline-sweep" id="boot-scanline-sweep" aria-hidden="true"></div>
+  </div>
+
+  <!-- Terminal window -->
+  <main class="terminal-wrap" id="terminal-wrap" aria-label="Interactive terminal portfolio">
+    <div class="terminal" id="terminal">
+
+      <!-- Title bar -->
+      <div class="terminal__titlebar" aria-hidden="true">
+        <div class="terminal__dots">
+          <span class="terminal__dot terminal__dot--red"></span>
+          <span class="terminal__dot terminal__dot--yellow"></span>
+          <span class="terminal__dot terminal__dot--green"></span>
+        </div>
+        <span class="terminal__title">aritra@portfolio:~</span>
+        <span class="terminal__title-right">bash — 80×24</span>
+      </div>
+
+      <!-- Output area -->
+      <div class="terminal__body" id="terminal-body" role="log" aria-live="polite" aria-label="Terminal output">
+        <div class="terminal__output" id="terminal-output"></div>
+      </div>
+
+      <!-- Input row -->
+      <div class="terminal__input-row" id="input-row">
+        <span class="terminal__prompt" aria-hidden="true">
+          <span class="prompt__user">aritra</span><span class="prompt__at">@</span><span class="prompt__host">portfolio</span><span class="prompt__colon">:</span><span class="prompt__path" id="prompt-path">~</span><span class="prompt__dollar">$</span>
+        </span>
+        <input
+          class="terminal__input"
+          id="terminal-input"
+          type="text"
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="off"
+          spellcheck="false"
+          aria-label="Terminal command input"
+          placeholder=""
+          autofocus
+        >
+        <span class="terminal__cursor" id="terminal-cursor" aria-hidden="true"></span>
+      </div>
+
+    </div>
+  </main>
+
+  <noscript>
+    <style>
+      .boot-screen { display: none !important; }
+      .terminal-wrap { opacity: 1 !important; }
+    </style>
+    <p style="color:#00ff41;font-family:monospace;padding:2rem;">JavaScript is required for the terminal interface. Please enable it.</p>
+  </noscript>
+
+  <script src="js/terminal.js" defer></script>
+</body>
+</html>
