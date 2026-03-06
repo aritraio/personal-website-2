@@ -124,7 +124,7 @@
       { label: 'Email',    value: 'aritra.saha@outlook.in',          href: 'mailto:aritra.saha@outlook.in' },
       { label: 'GitHub',   value: 'github.com/aritraio',             href: 'https://github.com/aritraio' },
       { label: 'LinkedIn', value: 'linkedin.com/in/aritra404',       href: 'https://www.linkedin.com/in/aritra404/' },
-      { label: 'Resume',   value: 'Download resume.pdf',             href: '../assets/files/resume.pdf', download: true },
+      { label: 'Resume',   value: 'Download Aritra Saha Resume.pdf', href: '../assets/files/resume.pdf', download: true },
     ],
   }
 
@@ -633,10 +633,10 @@
   }
 
   function cmdResume() {
-    print('Downloading resume.pdf...', 't-line t-line--dim')
+    print('Downloading Aritra Saha Resume.pdf...', 't-line t-line--dim')
     const a = document.createElement('a')
     a.href = DATA.resume
-    a.download = 'Aritra_Saha_Resume.pdf'
+    a.download = 'Aritra Saha Resume.pdf'
     a.click()
     print('Done. Check your downloads folder.', 't-line t-line--green')
   }
