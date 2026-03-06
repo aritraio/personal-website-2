@@ -22,7 +22,7 @@ This portfolio is intentionally built without frameworks, so implementation qual
 - Google Fonts:
   - `Inter` (UI/body headings)
   - `JetBrains Mono` (terminal/code style accents)
-- Static assets served from `assets/` (images + `resume.pdf`).
+- Static assets served from `assets/` (`css/`, `js/`, and `files/resume.pdf`).
 
 ### Hosting Model
 - Static site architecture (compatible with GitHub Pages / Netlify / Vercel static hosting).
@@ -222,12 +222,12 @@ Used instead of heavy scroll-driven loops for:
 ## 10) Maintainability Strategy
 
 - Clear separation by concern:
-  - structure/content in `index.html`
-  - presentation in `css/styles.css`
-  - behavior in `js/script.js`
+  - structure/content in `index.html` and `terminal/index.html`
+  - presentation in `assets/css/main.css` and `assets/css/terminal.css`
+  - behavior in `assets/js/main.js` and `assets/js/terminal.js`
 - Design tokens avoid hard-coded repetition.
 - Modular initialization makes it easy to disable/extend single features.
-- Documentation-first approach in `docs/` supports future iteration.
+- Documentation-first approach in `docs/planning/` and `docs/reference/` supports future iteration.
 
 ---
 

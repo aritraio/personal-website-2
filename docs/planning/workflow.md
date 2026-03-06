@@ -13,11 +13,11 @@ Provide a repeatable workflow for updating this portfolio site without breaking 
 ## Phase 1 — Plan the Change
 ### Inputs
 - Change request (new project, copy update, design tweak, bug fix)
-- Relevant docs in `docs/`
+- Relevant docs in `docs/planning/` and `docs/reference/`
 
 ### Tasks
 1. Define scope in one sentence.
-2. Identify affected files (`index.html`, `css/styles.css`, `js/script.js`, docs).
+2. Identify affected files (`index.html`, `terminal/index.html`, `assets/css/*`, `assets/js/*`, docs).
 3. Note acceptance criteria before editing.
 
 ### Exit Criteria
@@ -29,7 +29,7 @@ Provide a repeatable workflow for updating this portfolio site without breaking 
 ## Phase 2 — Implement
 ### Content Changes
 - Update section copy in `index.html`.
-- Ensure messaging follows `docs/content-plan.md`.
+- Ensure messaging follows `docs/planning/content-plan.md`.
 
 ### Styling Changes
 - Use existing CSS custom properties before adding new tokens.
@@ -69,7 +69,7 @@ Provide a repeatable workflow for updating this portfolio site without breaking 
 
 ## Phase 4 — Document and Ship
 ### Tasks
-1. Update affected docs in `docs/`.
+1. Update affected docs in `docs/planning/` or `docs/reference/`.
 2. Update `README.md` if setup/features changed.
 3. Deploy to static host (GitHub Pages/Netlify/Vercel).
 4. Validate social metadata preview after deployment.

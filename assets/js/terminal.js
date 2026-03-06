@@ -13,7 +13,7 @@
     email:   'aritra.saha@outlook.in',
     github:  'https://github.com/aritraio',
     linkedin:'https://www.linkedin.com/in/aritra404/',
-    resume:  'assets/resume.pdf',
+    resume:  '../assets/files/resume.pdf',
 
     summary: [
       'Focused on backend engineering and AI-driven applications.',
@@ -124,7 +124,7 @@
       { label: 'Email',    value: 'aritra.saha@outlook.in',          href: 'mailto:aritra.saha@outlook.in' },
       { label: 'GitHub',   value: 'github.com/aritraio',             href: 'https://github.com/aritraio' },
       { label: 'LinkedIn', value: 'linkedin.com/in/aritra404',       href: 'https://www.linkedin.com/in/aritra404/' },
-      { label: 'Resume',   value: 'Download resume.pdf',             href: 'assets/resume.pdf', download: true },
+      { label: 'Resume',   value: 'Download resume.pdf',             href: '../assets/files/resume.pdf', download: true },
     ],
   }
 
@@ -781,7 +781,7 @@
   function cmdExit() {
     print('Launching main portfolio...', 't-line t-line--dim')
     setTimeout(() => {
-      window.location.href = 'index.html'
+      window.location.href = '../'
     }, 800)
   }
 

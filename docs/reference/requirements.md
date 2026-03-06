@@ -85,9 +85,9 @@ Define the requirements used to maintain and evolve this portfolio site built wi
 - No horizontal overflow at common viewport sizes.
 
 ### NFR-4 Maintainability
-- Separation of concerns across `index.html`, `css/styles.css`, and `js/script.js`.
+- Separation of concerns across `index.html`, `terminal/index.html`, `assets/css/`, and `assets/js/`.
 - Reusable values centralized through CSS variables.
-- Documentation in `docs/` stays in sync with shipped behavior.
+- Documentation in `docs/planning/` and `docs/reference/` stays in sync with shipped behavior.
 
 ---
 

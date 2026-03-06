@@ -640,7 +640,7 @@
           void eye.offsetWidth
           eye.classList.add('egg-go')
         }
-        setTimeout(() => { window.location.href = 'terminal.html' }, 650)
+        setTimeout(() => { window.location.href = 'terminal/' }, 650)
         return
       }
 

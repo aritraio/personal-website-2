@@ -21,20 +21,28 @@ A responsive, single-page personal portfolio built with semantic HTML, modern CS
 ```text
 .
 ├── index.html
-├── css/
-│   └── styles.css
-├── js/
-│   └── script.js
+├── terminal/
+│   └── index.html
 ├── assets/
-│   ├── images/
-│   └── resume.pdf
+│   ├── css/
+│   │   ├── main.css
+│   │   └── terminal.css
+│   ├── files/
+│   │   └── resume.pdf
+│   └── js/
+│       ├── main.js
+│       └── terminal.js
 ├── docs/
-│   ├── requirements.md
-│   ├── workflow.md
-│   ├── content-plan.md
-│   ├── improvements.md
-│   └── portfolio-website-vanilla-js.pdf
-└── LICENSE
+│   ├── planning/
+│   │   ├── content-plan.md
+│   │   ├── improvements.md
+│   │   └── workflow.md
+│   └── reference/
+│       ├── portfolio-website-vanilla-js.pdf
+│       ├── requirements.md
+│       └── tech-stack.md
+├── LICENSE
+└── README.md
 ```
 
 ## Local Development
@@ -50,9 +58,11 @@ Use the VS Code Live Server extension and run the project from the workspace roo
 ## Customization Guide
 
 - Content and sections: `index.html`
-- Visual styling and animations: `css/styles.css`
-- Behavior and interactions: `js/script.js`
-- Resume file used by download buttons: `assets/resume.pdf`
+- Main site styling and animations: `assets/css/main.css`
+- Terminal styling: `assets/css/terminal.css`
+- Main site behavior and interactions: `assets/js/main.js`
+- Terminal behavior and interactions: `assets/js/terminal.js`
+- Resume file used by download buttons: `assets/files/resume.pdf`
 
 ## Deployment
 
