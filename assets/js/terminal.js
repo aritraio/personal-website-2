@@ -16,20 +16,20 @@
     resume:  '../assets/files/resume.pdf',
 
     summary: [
-      'Focused on backend engineering and AI-driven applications.',
-      'Building scalable APIs, real-time processing workflows,',
-      'and machine learning-enabled systems using Python, Go, and JavaScript.',
+      'I design and ship backend systems for AI-enabled products.',
+      'From API architecture and data workflows to machine-learning',
+      'integrations using Python, Go, and JavaScript.',
     ],
 
     about: [
-      "I'm a software developer with a deep focus on backend engineering",
-      'and AI-driven applications. I enjoy building systems that are not',
-      'just functional, but scalable, reliable, and thoughtfully designed.',
+      "I'm a software developer focused on backend engineering and",
+      'AI-driven applications. I like turning ambiguous product ideas into',
+      'scalable, reliable, and thoughtfully designed systems.',
       '',
-      'My work spans from designing RESTful APIs and real-time data pipelines',
-      'to implementing ML models that solve real problems. I believe in writing',
-      'clean, maintainable code and continuously learning from the evolving',
-      'tech landscape.',
+      'My work spans RESTful API design, real-time data workflows,',
+      'database-backed services, and machine-learning integrations.',
+      'I care about clean interfaces, maintainable code, and systems',
+      'that are easy to reason about under pressure.',
       '',
       "When I'm not coding, you'll find me exploring new AI research papers,",
       'contributing to open source, or diving into system design challenges.',
@@ -37,8 +37,8 @@
 
     stats: [
       { label: 'Projects Built',    value: '10+' },
-      { label: 'Technologies',      value: '5+' },
-      { label: 'Languages',         value: '3+' },
+      { label: 'Core Technologies', value: '5+' },
+      { label: 'Core Languages',    value: '3+' },
       { label: 'Passion for Code',  value: '100%' },
     ],
 
@@ -57,10 +57,10 @@
         period:  '2024 — Present',
         company: 'Freelance / Independent Projects',
         details: [
-          'Building scalable backend APIs with FastAPI and Python',
-          'Developing AI-driven applications with ML pipelines',
-          'Designing real-time processing systems and data workflows',
-          'Contributing to open-source projects on GitHub',
+          'Designing backend APIs, validation flows, and service boundaries with FastAPI and Python',
+          'Building AI-assisted workflows that combine data processing with ML model integration',
+          'Structuring real-time processing paths for low-latency, reliable application behavior',
+          'Maintaining public project work and technical experiments through GitHub',
         ],
       },
       {

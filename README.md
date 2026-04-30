@@ -29,6 +29,8 @@ A responsive, single-page personal portfolio built with semantic HTML, modern CS
 │   │   └── terminal.css
 │   ├── files/
 │   │   └── resume.pdf
+│   ├── images/
+│   │   └── og-preview.svg
 │   └── js/
 │       ├── main.js
 │       └── terminal.js

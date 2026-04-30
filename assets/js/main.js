@@ -343,6 +343,7 @@
   function initTypingEffect() {
     const greeting = $('.hero__greeting')
     if (!greeting) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
     const text = greeting.textContent
     greeting.textContent = ''
@@ -375,6 +376,10 @@
   function initRoleCycling() {
     const el = $('#role-cycling')
     if (!el) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      el.textContent = 'Software Developer'
+      return
+    }
 
     const roles = [
       'Software Developer',
